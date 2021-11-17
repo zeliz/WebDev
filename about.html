@@ -2,51 +2,64 @@
 <html lang="en">
     <head>
         <title>About Me</title>
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="About, Favorite Stuff, Zach, Awesome" />
         <meta name="description" content="About Me Page" />
         <meta name="revised" content="November 16, 2021" />
         <meta name="author" content="Zach Zeli" />
+        <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
         <h1>About Zach!</h1>
         <section>
-            <p>Zach lives in Pittsburgh. This page summarizes his education and his favorite things.</p>
-            <img src="photo.jpg" alt="Photo of Zach"/>
-            <table>
-                <tr>
-                    <th>Category</th>
-                    <th>Favorite</th>
-                </tr>
-                <tr>
-                    <td>Food</td>
-                    <td>Pizza</td>
-                </tr>
-                <tr>
-                    <td>Drink</td>
-                    <td>Tea</td>
-                </tr>
-                <tr>
-                    <td>Movie</td>
-                    <td>Groundhog Day</td>
-                </tr>
-                <tr>
-                    <td>Animal</td>
-                    <td>Owl</td>
-                </tr>
-            </table>
-            <h2>Education:</h2>
-            <ul>
-                <li>B.S.B.A Accounting</li>
-                <li>A.S. Software Development</li>
-                <li>A.S. IT Support</li>
-            </ul>
-            <h2>Favorite things to do</h2>
-            <ol>
-                <li>Walk</li>
-                <li>Eat</li>
-                <li>Read</li>
-                <li>Write</li>
-            </ol>
+            <p class="intro">
+                Zach lives in Pittsburgh. He's a millenial who has worked
+                in finance, academia, and healthcare. Learn more about him here!
+            </p>
+            <img src="photo.jpg" alt="Photo of Zach" id="photo" />
+
+            <div class="inline">
+                <div>
+                    <table class="favorites">
+                        <tr>
+                            <th >Category</th>
+                            <th>Favorite</th>
+                        </tr>
+                        <tr>
+                            <td>Food</td>
+                            <td>Pizza</td>
+                        </tr>
+                        <tr>
+                            <td>Drink</td>
+                            <td>Tea</td>
+                        </tr>
+                        <tr>
+                            <td>Movie</td>
+                            <td>Groundhog Day</td>
+                        </tr>
+                        <tr>
+                            <td>Animal</td>
+                            <td>Owl</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h2>Education:</h2>
+                    <ul>
+                        <li>B.S.B.A Accounting</li>
+                        <li>A.S. Software Dev.</li>
+                        <li>A.S. IT Support</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Favorite activities:</h2>
+                    <ol>
+                        <li>Walk</li>
+                        <li>Eat</li>
+                        <li>Read</li>
+                        <li>Write</li>
+                    </ol>    
+                </div>
+            </div>
         </section>
     </body>
 </html>
