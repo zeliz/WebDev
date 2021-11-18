@@ -15,7 +15,7 @@ const MY_FAV = {
             alt: "Image of food",
         },
         favorite: {
-            choice: "pizza",
+            choice: "Pizza",
             price: 8.99,
             image: {
                 link: FOOD_FAV_IMG,
@@ -29,7 +29,7 @@ const MY_FAV = {
             alt: "Image of a drink",
         },
         favorite: {
-            choice: "tea",
+            choice: "Tea",
             price: 0.99,
             image: {
                 link: DRINK_FAV_IMG,
@@ -57,10 +57,10 @@ const MY_FAV = {
             alt: "Image of animals",
         },
         favorite: {
-            choice: "owl",
+            choice: "Owl",
             price: 1275.75,
             image: {
-                link: FOOD_FAV_IMG,
+                link: ANIMAL_FAV_IMG,
                 alt: "Image of favorite animal (owl)",
             },
         },
@@ -84,6 +84,7 @@ const favoriteCategories = {
 window.onload = function () {
     let favoriteRows = document.querySelectorAll(".favorite-table tr");
     let annoyButton = document.querySelector("#annoy-button");
+    let shopItems = document.querySelector("#item-select");
 
     // Add event listeners for 'favorite table' rows
     for (let row of favoriteRows) {
@@ -91,7 +92,10 @@ window.onload = function () {
     }
 
     // Add event listener to the 'annoy' button
-    annoyButton.addEventListener("click", annoyClick);
+    if (annoyButton) annoyButton.addEventListener("click", annoyClick);
+
+    // Populate shop with favorite items
+    if (shopItems) populate(shopItems);
 };
 
 function annoyClick(event) {
@@ -156,5 +160,70 @@ function removeHighlight() {
     // only 1 row will ever be highlighted.
     if (highlighted && highlighted.classList.contains("highlight")) {
         highlighted.classList.remove("highlight");
+    }
+}
+
+function populate(someSection) {
+    let container = someSection.querySelector("div.assortment");
+    if (!container) { console.log("Can't populate section"); return; }
+
+    let itemList = "";
+    for (let category in MY_FAV) {
+        itemList += itemFormat(MY_FAV[category].favorite);
+    }
+    container.innerHTML = itemList;
+
+    // Add event listeners to items
+    let items = container.children;
+    // Toggles visibility of all children of the div
+    for (let item of items) {
+        item.addEventListener("click", event => {
+            let target = event.currentTarget;
+            target.classList.toggle("selected");
+            // Update Cart
+            let targetItemName = item.querySelector("h3").innerHTML;
+            let cart = document.querySelector("#cart .my-cart");
+            let cartItems = cart.children;
+            // Add item to cart if newly selected
+            if (target.classList.contains("selected")) {
+                let cartItem = findFavItemByName(targetItemName);
+                cart.innerHTML += itemFormat(cartItem);
+            } else {
+                // OW, item was previously selected and must be removed
+                removeCartItem(targetItemName);
+            }
+        });
+    }
+}
+
+function removeCartItem(itemName) {
+    let cart = document.querySelector("#cart .my-cart");
+    let cartItems = cart.children;
+
+    // if cart items exist, and one matches name, then remove it
+    for (let item of cartItems) {
+        let name = item.querySelector("h3").innerHTML;
+        if (name === itemName) {
+            // Found item in cart
+            item.remove();
+        }
+    }
+}
+
+
+function itemFormat(item) {
+    let result = "";
+    result += `<div class="item">`;
+    result += `<div><h3>${item.choice}</h3><p>${item.price}</p></div>`;
+    result += `<img src="${item.image.link}" alt ="${item.image.alt}" />`;
+    result += `</div>`;
+    return result;
+}
+
+function findFavItemByName(name) {
+    for (let category in MY_FAV) {
+        if (MY_FAV[category].favorite.choice === name) {
+            return MY_FAV[category].favorite;
+        }
     }
 }
