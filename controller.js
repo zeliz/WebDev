@@ -42,12 +42,28 @@ const favoriteCategories = {
 };
 
 window.onload = function () {
-    // Add event listeners for 'favorite table' rows
     let favoriteRows = document.querySelectorAll(".favorite-table tr");
+    let annoyButton = document.querySelector("#annoy-button");
+
+    // Add event listeners for 'favorite table' rows
     for (let row of favoriteRows) {
         row.addEventListener("click", favRowClick);
     }
+
+    // Add event listener to the 'annoy' button
+    annoyButton.addEventListener("click", annoyClick);
 };
+
+function annoyClick(event) {
+    // Change button text
+    let btn = event.target;
+    btn.innerHTML = ("(Be Annoying)" === btn.innerHTML) ?
+                    "(Just chill)" : "(Be Annoying)";
+
+    // Make photo annoying
+    let photo = document.querySelector("#photo");
+    photo.classList.toggle("annoying");
+}
 
 function favRowClick(event) {
     let target = event.currentTarget;
