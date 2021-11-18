@@ -3,6 +3,7 @@
     --medium-color: #6495ED;
     --dark-color: #191970;
     --accent-color: #FF7F50;
+    --highlight: #40E0D0;
 }
 
 html {
@@ -23,6 +24,14 @@ html {
     font-size: 1.2em;
 }
 
+.no-display-toggle {
+    display: none;
+}
+
+.highlight {
+    background-color: var(--highlight);
+}
+
 .inline {
     display: flex;
     margin: 40px 25px;
@@ -41,14 +50,18 @@ html {
     font-size: 0.8rem;
 }
 
-table.favorites {
+.div-content-toggler img {
+    height: 180px;
+}
+
+table.favorite-table {
     background-color: var(--accent-color);
     border: 10px solid var(--dark-color);
     font-size: 0.9rem;
     margin: auto;
 }
 
-table.favorites td {
+table.favorites-table td {
     padding: 5px;
     border: 3px solid var(--dark-color);
     margin: 5px;

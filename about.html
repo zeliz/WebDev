@@ -4,7 +4,7 @@
         <title>About Me</title>
         <meta name="keywords" content="About, Favorite Stuff, Zach, Awesome" />
         <meta name="description" content="About Me Page" />
-        <meta name="revised" content="November 16, 2021" />
+        <meta name="revised" content="November 17, 2021" />
         <meta name="author" content="Zach Zeli" />
         <link rel="stylesheet" href="styles.css" />
         <script src="controller.js"></script>
@@ -20,45 +20,47 @@
 
             <div class="inline">
                 <div>
-                    <table class="favorites">
-                        <tr>
+                    <table class="favorite-table">
+                        <tr id="fav-header-row">
                             <th >Category</th>
                             <th>Favorite</th>
                         </tr>
-                        <tr>
+                        <tr id="fav-food-row">
                             <td>Food</td>
                             <td>Pizza</td>
                         </tr>
-                        <tr>
+                        <tr id="fav-drink-row">
                             <td>Drink</td>
                             <td>Tea</td>
                         </tr>
-                        <tr>
+                        <tr id="fav-movie-row">
                             <td>Movie</td>
                             <td>Groundhog Day</td>
                         </tr>
-                        <tr>
+                        <tr id="fav-animal-row">
                             <td>Animal</td>
                             <td>Owl</td>
                         </tr>
                     </table>
                 </div>
-                <div>
+                <div class="div-content-toggler">
                     <h2>Education:</h2>
                     <ul>
                         <li>B.S.B.A Accounting</li>
                         <li>A.S. Software Dev.</li>
                         <li>A.S. IT Support</li>
                     </ul>
+                    <img class="no-display-toggle" alt="blank image: click table row to update"/>
                 </div>
-                <div>
+                <div class="div-content-toggler">
                     <h2>Favorite activities:</h2>
                     <ol>
                         <li>Walk</li>
                         <li>Eat</li>
                         <li>Read</li>
                         <li>Write</li>
-                    </ol>    
+                    </ol>
+                    <img class="no-display-toggle" alt="blank image: click table row to update"/>
                 </div>
             </div>
         </section>
