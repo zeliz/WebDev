@@ -9,10 +9,62 @@ const ANIMAL_CAT_IMG = "https://thumbs.dreamstime.com/z/farmers-market-logo-blac
 const ANIMAL_FAV_IMG = "https://fcit.usf.edu/matrix/wp-content/uploads/2016/12/OwlTablet.png";
 
 const MY_FAV = {
-    food: "pizza",
-    drink: "tea",
-    movie: "Groundhog Day",
-    animal: "owl",
+    food: {
+        image: {
+            link: FOOD_CAT_IMG,
+            alt: "Image of food",
+        },
+        favorite: {
+            choice: "pizza",
+            price: 8.99,
+            image: {
+                link: FOOD_FAV_IMG,
+                alt: "Image of favorite food (pizza)",
+            },
+        },
+    },
+    drink: {
+        image: {
+            link: DRINK_CAT_IMG,
+            alt: "Image of a drink",
+        },
+        favorite: {
+            choice: "tea",
+            price: 0.99,
+            image: {
+                link: DRINK_FAV_IMG,
+                alt: "Image of favorite drink (tea)",
+            },
+        },
+    },
+    movie: {
+        image: {
+            link: MOVIE_CAT_IMG,
+            alt: "Image of movie symbols",
+        },
+        favorite: {
+            choice: "Groundhog Day",
+            price: 4.99,
+            image: {
+                link: MOVIE_FAV_IMG,
+                alt: "Image of favorite movie (Groundhog Day)",
+            },
+        },
+    },
+    animal: {
+        image: {
+            link: ANIMAL_CAT_IMG,
+            alt: "Image of animals",
+        },
+        favorite: {
+            choice: "owl",
+            price: 1275.75,
+            image: {
+                link: FOOD_FAV_IMG,
+                alt: "Image of favorite animal (owl)",
+            },
+        },
+    },
 }
 
 let showingImg = false;
@@ -20,25 +72,13 @@ let showingImg = false;
 // element id's of rows in ".favorite-table", with pictures and alt text
 const favoriteCategories = {
     "fav-header-row": [
-        ["", "blank image: click table row to update"],
-        ["", "blank image: click table row to update"]
+        { link: "", alt: "blank image: click table row to update" },
+        { link: "", alt: "blank image: click table row to update" },
     ], 
-    "fav-food-row": [
-        [FOOD_CAT_IMG, "Image of food"],
-        [FOOD_FAV_IMG, `Image of favorite food (${MY_FAV.food})`]
-    ],
-    "fav-drink-row": [
-        [DRINK_CAT_IMG, "Image of a drink"],
-        [DRINK_FAV_IMG, `Image of favorite drink (${MY_FAV.drink})`]
-    ],
-    "fav-movie-row": [
-        [MOVIE_CAT_IMG, "Image of movie symbols"],
-        [MOVIE_FAV_IMG, `Image of favorite movie (${MY_FAV.movie})`]
-    ],
-    "fav-animal-row": [
-        [ANIMAL_CAT_IMG, "Image of animals"],
-        [ANIMAL_FAV_IMG, `Image of favorite animal (${MY_FAV.animal})`]
-    ],
+    "fav-food-row": [MY_FAV.food.image, MY_FAV.food.favorite.image],
+    "fav-drink-row": [MY_FAV.drink.image, MY_FAV.drink.favorite.image],
+    "fav-movie-row": [MY_FAV.movie.image, MY_FAV.movie.favorite.image],
+    "fav-animal-row": [MY_FAV.animal.image, MY_FAV.animal.favorite.image],
 };
 
 window.onload = function () {
@@ -83,15 +123,8 @@ function favRowClick(event) {
 }
 
 function updateImages(selectedFavorite) {
-    let categoryUpdates = favoriteCategories[selectedFavorite][0];
-    let favoriteUpdates = favoriteCategories[selectedFavorite][1];
-
-    // New links
-    let catLink = categoryUpdates[0];
-    let favLink = favoriteUpdates[0];
-    // New alt text
-    let catAlt = categoryUpdates[1];
-    let favAlt = favoriteUpdates[1];
+    let categoryImage = favoriteCategories[selectedFavorite][0];
+    let favoriteImage = favoriteCategories[selectedFavorite][1];
 
     // Get the images under div-toggles (should be exactly 2)
     let imgs = document.querySelectorAll(".div-content-toggler img");
@@ -100,10 +133,10 @@ function updateImages(selectedFavorite) {
         return; // exit early if not 2 images
     }
     // Update image attributes
-    imgs[0].setAttribute("src", catLink);
-    imgs[0].setAttribute("alt", catAlt);
-    imgs[1].setAttribute("src", favLink);
-    imgs[1].setAttribute("alt", favAlt);
+    imgs[0].setAttribute("src", categoryImage["link"]);
+    imgs[0].setAttribute("alt", categoryImage["alt"]);
+    imgs[1].setAttribute("src", favoriteImage["link"]);
+    imgs[1].setAttribute("alt", favoriteImage["alt"]);
 }
 
 function toggleContent() {
